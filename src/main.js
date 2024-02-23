@@ -65,6 +65,7 @@ refs.btnLoadMore.addEventListener('click', onLoadMoreClick);
 async function onFormSubmit(e) {
   e.preventDefault();
   text = e.target.elements.text.value.trim();
+  page = 1; // Скидаємо номер сторінки до 1 при новому пошуковому запиті
 
   if (!text) {
     e.target.reset();
@@ -92,11 +93,19 @@ async function onFormSubmit(e) {
     }
   } catch (err) {
     console.error('Error loading data:', err);
+    iziToast.error({
+      title: 'Error',
+      message: 'An error occurred while fetching data. Please try again later.',
+      position: 'topRight',
+      timeout: 3000,
+      progressBar: false
+    });
   }
 
   hideLoader();
   e.target.reset();
 }
+
 
 
 async function onLoadMoreClick() {

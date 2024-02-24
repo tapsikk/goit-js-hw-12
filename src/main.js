@@ -116,7 +116,7 @@ async function onLoadMoreClick() {
   const data = await searchGallery(text, page);
   const maxPage = Math.ceil(data.totalHits / perPage);
 
-  if (page >= maxPage) {
+  if (page > maxPage) {
     iziToast.info(optionsIziToastInfo);
     hideLoadMore();
     hideLoader();
